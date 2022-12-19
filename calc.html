@@ -1,0 +1,138 @@
+<html>
+    <head>
+        <title>Calculator</title>
+    </head>
+    <body>
+        <div> 
+            <input type="text" id="number1" >Number 1</input> 
+        </div>
+        <div> 
+            <input type="text" id="number2" >Number 2</input> 
+        </div>
+        <div> 
+            <input type="text" id="result" >Result</input> 
+        </div>
+        <button onclick="add()">+</button>
+        <button onclick="subtract()">-</button>
+        <button onclick="multiply()">*</button>
+        <button onclick="divide()">/</button>
+    </body>
+    <script>
+        function add(){
+            let x=document.getElementById("number1").value;
+            let y=document.getElementById("number2").value;
+            document.getElementById("number1").innerHTML=x;
+            document.getElementById("number2").innerHTML=y;
+
+            if(isNaN(x) || isNaN(y)){
+                alert("Please Enter the values");
+                return;
+            }
+            let data={
+                x:x,
+                y:y,
+            };
+
+            fetch("https://localhost:3000/add",{
+                method: "POST",
+                headers:{
+                    "Content-Type":"application/json",
+                    Accept:"application/json",
+                },
+                body:JSON.stringify(data),
+            })
+            .then((res)=>res.json())
+            .then((data)=>{
+                console.log("Result",data.ans);
+                document.getElementById("result").value=data.ans;
+            });
+        }
+        function subtract(){
+            let x=document.getElementById("number1").value;
+            let y=document.getElementById("number2").value;
+            document.getElementById("number1").innerHTML=x;
+            document.getElementById("number2").innerHTML=y;
+
+            if(isisNaN(x) || isisNaN(y)){
+                alert("Please Enter the values");
+                return;
+            }
+            let data={
+                x:x,
+                y:y,
+            };
+
+            fetch("https://localhost:3000/subtract",{
+                method: "POST",
+                headers:{
+                    "Content-Type":"application/json",
+                    Accept:"application/json",
+                },
+                body:JSON.stringify(data),
+            })
+            .then((res)=>res.json())
+            .then((data)=>{
+                console.log("Result", data.ans);
+                document.getElementById("result").value=data.ans;
+            });
+        }
+        function multiply(){
+            let x=document.getElementById("number1").value;
+            let y=document.getElementById("number2").value;
+            document.getElementById("number1").innerHTML=x;
+            document.getElementById("number2").innerHTML=y;
+
+            if(isNaN(x) || isNaN(y)){
+                alert("Please Enter the values");
+                return;
+            }
+            let data={
+                x:x,
+                y:y,
+            };
+
+            fetch("https://localhost:3000/multiply",{
+                method: "POST",
+                headers:{
+                    "Content-Type":"application/json",
+                    Accept:"application/json",
+                },
+                body:JSON.stringify(data),
+            })
+            .then((res)=>res.json())
+            .then((data)=>{
+                console.log("Result",data.ans);
+                document.getElementById("result").value=data.ans;
+            });
+        }
+        function divide(){
+            let x=document.getElementById("number1").value;
+            let y=document.getElementById("number2").value;
+            document.getElementById("number1").innerHTML=x;
+            document.getElementById("number2").innerHTML=y;
+
+            if(isNaN(x) || isNaN(y)){
+                alert("Please Enter the values");
+                return;
+            }
+            let data={
+                x:x,
+                y:y,
+            };
+
+            fetch("https://localhost:3000/divide",{
+                method: "POST",
+                headers:{
+                    "Content-Type":"application/json",
+                    Accept:"application/json",
+                },
+                body:JSON.stringify(data),
+            })
+            .then((res)=>res.json())
+            .then((data)=>{
+                console.log("Result",data.ans);
+                document.getElementById("result").value=data.ans;
+            });
+        }
+    </script>
+</html>
